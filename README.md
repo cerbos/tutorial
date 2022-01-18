@@ -15,11 +15,6 @@ This tutorial will walk through the decision-making process for implementing Cer
   - Config File
   - Container
   - Binary
-- Policy Stores
-  - Disk
-  - Git (enabling GitOps)
-  - Cloud Storage
-  - Database
 - Policy Authoring
   - Resource Policies
   - Derived Roles
@@ -27,6 +22,11 @@ This tutorial will walk through the decision-making process for implementing Cer
   - Conditions
   - Attribute Schema
 - Testing Policies
+- Policy Stores
+  - Disk
+  - Git (enabling GitOps)
+  - Cloud Storage
+  - Database 
 - Deployment Patterns
   - Binary
   - Container

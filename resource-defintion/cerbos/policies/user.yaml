@@ -1,0 +1,23 @@
+---
+apiVersion: api.cerbos.dev/v1
+resourcePolicy:
+  version: "default"
+  resource: "user"
+  rules:
+    - actions:
+        - create
+        - read
+        - update
+      effect: EFFECT_ALLOW
+      roles:
+        - user
+
+    - actions:
+        - create
+        - read
+        - update
+        - delete
+        - update_password
+      effect: EFFECT_ALLOW
+      roles:
+        - admin
