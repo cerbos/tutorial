@@ -18,6 +18,17 @@ Cerbos' approach is to define all policy as human-readable policy definitions he
 
 ## Bring your own Identity
 
-Cerbforce has standardized on using Auth0 for authentication across their suite of applications. Cerbos can consume an identity from any authentication provider be it homegrown or a managed service. 
+Cerbforce has standardized on using Auth0 for authentication across their suite of applications. This contains the user profile information such as what role the user has, which department they belong too and what office they are based in.
+
+Cerbos can consume an identity from any authentication provider be it homegrown or a managed service and can even natively support JWTs including verification.
+
+This profile information from Auth0 is used to construct the user information (called the principal in Cerbos speak due to supporting not user identities also) which is passed in with an authorization check to make policy decisions with.
 
 ## Performance
+
+Given the scale of Cerbforce there is concern about how performant Cerbos will be given authorization checks will be in the blocking path of every request. Several key features of Cerbos have quelled these concerns:
+
+- The Cerbos API is exposed over a highly performant [gRPC](https://docs.cerbos.dev/cerbos/latest/api/index.html) interface to keep overheads low (with an HTTP gateway on top). 
+- A recommended approach is a [sidecar deployment](https://docs.cerbos.dev/cerbos/latest/deployment/k8s-sidecar.html) so that each service instance has its Cerbos instance to keep latency as low as possible - calls can even be made over [UNIX sockets](https://github.com/cerbos/demo-rest/blob/main/docker-compose.yaml).
+- Cerbos is advocating a modern cloud-native approach to dealing with common infrastructure services such as authorization. This is a proven method - [Microsoft Dapr](https://docs.microsoft.com/en-us/dotnet/architecture/dapr-for-net-developers/dapr-at-20000-feet) is a good example at scale.
+
