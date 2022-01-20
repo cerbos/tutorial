@@ -53,3 +53,5 @@ resourcePolicy:
 The structure of a resource poliicy requires a name to be set on the `resource` key and then a list of rules are defined. A rule defines a list of actions on the resource, the effect of the rule (`EFFECT_ALLOW` or `EFFECT_DENY`) and then feilds to state who this applies to - in this simple case a list of `roles` which is checked for in the roles of the user making the request.
 
 In this case a request made for a principal with a the role of `user` is granted only `create` and `read` actions whilst an `admin` role can also perform `update`, `delete` and `update_password` actions.
+
+At this stage a simple Roles-based Access Control (RBAC) model has been implmeneted, but buisness requirements are more complex than that and so some additional conditions are required which will be added in the next section.

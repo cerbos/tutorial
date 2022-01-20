@@ -16,10 +16,10 @@ This tutorial will walk through the decision-making process for implementing Cer
   - Container
   - Binary
 - [Defining Resources](03-resource-defintion/README.md)
-- [Creating Derived Roles]()
-- [Policy Conditions]()
-- [Principal Policies]()
-- [Attribute Schema]()
+- [Adding Conditions](04-adding-conditions/README.md)
+- Derived Roles
+- Principal Policies
+- Attribute Schema
 - Testing Policies
 - Policy Stores
   - Disk
