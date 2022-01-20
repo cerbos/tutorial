@@ -15,12 +15,11 @@ This tutorial will walk through the decision-making process for implementing Cer
   - Config File
   - Container
   - Binary
-- Policy Authoring
-  - Resource Policies
-  - Derived Roles
-  - Principal Policies
-  - Conditions
-  - Attribute Schema
+- [Defining Resources](03-resource-defintion/README.md)
+- [Creating Derived Roles]()
+- [Policy Conditions]()
+- [Principal Policies]()
+- [Attribute Schema]()
 - Testing Policies
 - Policy Stores
   - Disk
