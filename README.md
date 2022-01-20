@@ -17,7 +17,7 @@ This tutorial will walk through the decision-making process for implementing Cer
   - Binary
 - [Defining Resources](03-resource-defintion/README.md)
 - [Adding Conditions](04-adding-conditions/README.md)
-- Derived Roles
+- [Derived Roles](05-derived-roles/README.md)
 - Principal Policies
 - Attribute Schema
 - Testing Policies

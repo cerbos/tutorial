@@ -38,5 +38,4 @@ Alternatively, if you don't have Docker running you can grab the relevant releas
 ./cerbos server --config=/tutorial/config/conf.yaml
 ```
 
-
 Once started you can open `http://localhost:3592` to see the API documentation.

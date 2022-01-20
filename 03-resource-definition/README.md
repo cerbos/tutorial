@@ -54,4 +54,31 @@ The structure of a resource poliicy requires a name to be set on the `resource` 
 
 In this case a request made for a principal with a the role of `user` is granted only `create` and `read` actions whilst an `admin` role can also perform `update`, `delete` and `update_password` actions.
 
+## Wildcard Action
+
+To simplify things further, we want admins to be able to do every action so a special `*` wildcard action can be used to keep things clean:
+
+```yaml
+---
+apiVersion: api.cerbos.dev/v1
+resourcePolicy:
+  version: "default" 
+  resource: "user"
+  rules:
+    - actions: 
+        - create
+        - read
+      effect: EFFECT_ALLOW
+      roles:
+        - user 
+
+    - actions: 
+        - '*'
+      effect: EFFECT_ALLOW
+      roles:
+        - admin         
+```
+
+## Conclusion
+
 At this stage a simple Roles-based Access Control (RBAC) model has been implmeneted, but buisness requirements are more complex than that and so some additional conditions are required which will be added in the next section.

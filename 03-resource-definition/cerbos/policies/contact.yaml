@@ -2,12 +2,14 @@
 apiVersion: api.cerbos.dev/v1
 resourcePolicy:
   version: "default"
-  resource: "user"
+  resource: "contact"
   rules:
     - actions:
         - create
         - read
         - update
+        - publich
+        - assign_to_company
       effect: EFFECT_ALLOW
       roles:
         - user
