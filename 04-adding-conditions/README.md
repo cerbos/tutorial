@@ -76,9 +76,13 @@ resourcePolicy:
       roles:
         - user
       condition:
-        - expr: request.resource.id == request.principal.id
+        match:
+          - expr: request.resource.id == request.principal.id
 
 # ....other conditions
 ```
 
 Complex logic can be defined in conditions (or sets of conditions) which you can read more about in the docs.
+
+
+

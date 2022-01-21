@@ -8,7 +8,7 @@ resourcePolicy:
         - create
         - read
         - update
-        - archive
+        - delete
       effect: EFFECT_ALLOW
       roles:
         - user

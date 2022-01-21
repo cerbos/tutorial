@@ -8,8 +8,7 @@ resourcePolicy:
         - create
         - read
         - update
-        - publich
-        - assign_to_company
+        - delete
       effect: EFFECT_ALLOW
       roles:
         - user

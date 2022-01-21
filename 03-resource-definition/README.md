@@ -14,9 +14,9 @@ In the case of Cerbforce some of the resources and actions are as follows:
 
 | Resource | Actions |
 | --- | --- |
-| User | Create, Read, Update, Delete, Reset Password |
-| Company | Create, Read, Update, Archive |
-| Contact | Create, Read, Update, Archive, Publish, Assign to Company |
+| User | Create, Read, Update, Delete |
+| Company | Create, Read, Update, Delete |
+| Contact | Create, Read, Update, Delete |
 
 With this as a start we can begin creating our first Cerbos policy - a Resource Policy.
 
@@ -44,7 +44,6 @@ resourcePolicy:
         - read
         - update
         - delete
-        - update_password
       effect: EFFECT_ALLOW
       roles:
         - admin         
@@ -52,7 +51,7 @@ resourcePolicy:
 
 The structure of a resource poliicy requires a name to be set on the `resource` key and then a list of rules are defined. A rule defines a list of actions on the resource, the effect of the rule (`EFFECT_ALLOW` or `EFFECT_DENY`) and then feilds to state who this applies to - in this simple case a list of `roles` which is checked for in the roles of the user making the request.
 
-In this case a request made for a principal with a the role of `user` is granted only `create` and `read` actions whilst an `admin` role can also perform `update`, `delete` and `update_password` actions.
+In this case a request made for a principal with a the role of `user` is granted only `create` and `read` actions whilst an `admin` role can also perform `update`, `delete` actions.
 
 ## Wildcard Action
 

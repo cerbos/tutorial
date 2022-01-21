@@ -7,12 +7,16 @@ resourcePolicy:
     - actions:
         - create
         - read
-        - update
-        - publich
-        - assign_to_company
       effect: EFFECT_ALLOW
       roles:
         - user
+
+    - actions:
+        - update
+        - delete
+      effect: EFFECT_ALLOW
+      derivedRoles:
+        - owner
 
     - actions:
         - "*"
