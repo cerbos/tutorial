@@ -1,9 +1,9 @@
 ---
-name: ContactTestSuite
-description: Tests for verifying the contact resource policy
+name: CompanyTestSuite
+description: Tests for verifying the company resource policy
 resources:
-  contact_test:
-    kind: "contact"
+  company_test:
+    kind: "company"
     attr:
 principals:
   admin:
@@ -22,11 +22,11 @@ principals:
       - user
     attr:
 tests:
-  - name: Contact CRUD Actions
+  - name: Company CRUD Actions
     input:
       requestId: "test"
       actions: ["create", "read", "update", "delete"]
-      resource: "contact_test"
+      resource: "company_test"
     expected:
       - principal: admin
         actions:
@@ -34,7 +34,15 @@ tests:
           read: EFFECT_ALLOW
           update: EFFECT_ALLOW
           delete: EFFECT_ALLOW
+
       - principal: user1
+        actions:
+          create: EFFECT_ALLOW
+          read: EFFECT_ALLOW
+          update: EFFECT_ALLOW
+          delete: EFFECT_DENY
+
+      - principal: user2
         actions:
           create: EFFECT_ALLOW
           read: EFFECT_ALLOW
