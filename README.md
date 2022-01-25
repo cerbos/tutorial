@@ -8,7 +8,7 @@ This tutorial will walk through the decision-making process for implementing Cer
 
 - [Introduction to Cerbos](01-introduction-to-cerbos/README.md)
 - [Running Locally](02-running-locally/README.md)
-- [Defining Resources](03-resource-defintion/README.md)
+- [Defining Resources](03-resource-definition/README.md)
 - [Calling Cerbos](04-calling-cerbos/README.md)
 - [Testing Policies](05-testing-policies/README.md)
 - [Adding Conditions](06-adding-conditions/README.md)
