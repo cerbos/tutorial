@@ -78,6 +78,71 @@ resourcePolicy:
         - admin         
 ```
 
+Our `contact` and `company` resources have a similiar structure at this stage and can be modeled as so:
+
+```yaml
+---
+apiVersion: api.cerbos.dev/v1
+resourcePolicy:
+  version: "default"
+  resource: "contact"
+  rules:
+    - actions:
+        - create
+        - read
+        - update
+        - delete
+      effect: EFFECT_ALLOW
+      roles:
+        - user
+
+    - actions:
+        - "*"
+      effect: EFFECT_ALLOW
+      roles:
+        - admin
+```
+
+```yaml
+---
+apiVersion: api.cerbos.dev/v1
+resourcePolicy:
+  version: "default"
+  resource: "company"
+  rules:
+    - actions:
+        - create
+        - read
+        - update
+        - delete
+      effect: EFFECT_ALLOW
+      roles:
+        - user
+
+    - actions:
+        - "*"
+      effect: EFFECT_ALLOW
+      roles:
+        - admin
+```
+
+
+## Validating Policies
+
+Now with our initial policies in place we can run Cerbos in compile mode which validates the content of the policy files to ensure they are correct.
+
+If you are running Cerbos in a container then mount the folder containing your policies and run the `compile` command pointing to the folder of your policies.
+
+```sh
+# Using Container
+docker run --rm --name cerbos -t -v /tutorial:/tutorial ghcr.io/cerbos/cerbos:latest compile /tutorial/policies
+
+# Using Binary
+./cerbos compile /tutorial/policies
+```
+
+If the policies are valid then the process will exit with no errors. If there is an issue, the error message will point you to where you need to check and the specific problem to fix.
+
 ## Conclusion
 
-At this stage a simple Roles-based Access Control (RBAC) model has been implmeneted, but buisness requirements are more complex than that and so some additional conditions are required which will be added in the next section.
+At this stage a simple Roles-based Access Control (RBAC) model has been deisgned and the policies have been validated - next up is making our first authorization check to Cerbos.
