@@ -17,7 +17,8 @@ resourcePolicy:
       roles:
         - user
       condition:
-        - expr: request.resource.id == request.principal.id
+        match:
+          expr: request.resource.id == request.principal.id
 
     - actions:
         - "*"

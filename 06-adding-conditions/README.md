@@ -54,7 +54,7 @@ Using this information a check to see if the prinicpal ID is the same as the ID 
 
 `request.resource.id == request.principal.id`
 
-Adding this to the policy request a new rule to be created that is just for the `update` action which is for the `user` role and has a single condition as per the above.
+Adding this to the policy request a new rule to be created that is just for the `update` and `delete` actions which is for the `user` role and has a single condition as per the above.
 
 ```yaml
 ---
@@ -72,6 +72,7 @@ resourcePolicy:
 
     - actions:
         - update
+        - delete
       effect: EFFECT_ALLOW
       roles:
         - user
@@ -84,5 +85,72 @@ resourcePolicy:
 
 Complex logic can be defined in conditions (or sets of conditions) which you can read more about in the docs.
 
+# Extending Tests
 
+Now that we have a conditional policy, we can add these as test cases in our user tests. We can now define multiple `user` resources and principals and create test cases for ensuring the `update` action is allowed when the ID of the principal matches the ID of the resource, aswell as checking that it isn't allowed if the condition is not met.
 
+```yaml
+---
+name: UserTestSuite
+description: Tests for verifying the user resource policy
+resources:
+  admin:
+    kind: "user"
+    id: "admin"
+    attr:
+  user1:
+    kind: "user"
+    id: "user1"
+    attr:
+  user2:
+    kind: "user"
+    id: "user2"
+    attr:
+principals:
+  admin:
+    id: admin
+    roles:
+      - admin
+    attr:
+  user1:
+    id: user1
+    roles:
+      - user
+    attr:
+  user2:
+    id: user2
+    roles:
+      - user
+    attr:
+tests:
+  - name: Update Admin by
+    input:
+      requestId: "test"
+      actions: ["update"]
+      resource: "admin"
+    expected:
+      - principal: admin
+        actions:
+          update: EFFECT_ALLOW
+      - principal: user1
+        actions:
+          update: EFFECT_DENY
+      - principal: user2
+        actions:
+          update: EFFECT_DENY
+  - name: Update User1 by
+    input:
+      requestId: "test"
+      actions: ["update"]
+      resource: "user1"
+    expected:
+      - principal: admin
+        actions:
+          update: EFFECT_ALLOW
+      - principal: user1
+        actions:
+          update: EFFECT_ALLOW
+      - principal: user2
+        actions:
+          update: EFFECT_DENY
+```

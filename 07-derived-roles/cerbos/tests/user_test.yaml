@@ -1,0 +1,78 @@
+---
+name: UserTestSuite
+description: Tests for verifying the user resource policy
+resources:
+  admin:
+    kind: "user"
+    id: "admin"
+    attr:
+  user1:
+    kind: "user"
+    id: "user1"
+    attr:
+  user2:
+    kind: "user"
+    id: "user2"
+    attr:
+principals:
+  admin:
+    id: admin
+    roles:
+      - admin
+    attr:
+  user1:
+    id: user1
+    roles:
+      - user
+    attr:
+  user2:
+    id: user2
+    roles:
+      - user
+    attr:
+tests:
+  - name: Update Admin by
+    input:
+      requestId: "test"
+      actions: ["update"]
+      resource: "admin"
+    expected:
+      - principal: admin
+        actions:
+          update: EFFECT_ALLOW
+      - principal: user1
+        actions:
+          update: EFFECT_DENY
+      - principal: user2
+        actions:
+          update: EFFECT_DENY
+  - name: Update User1 by
+    input:
+      requestId: "test"
+      actions: ["update"]
+      resource: "user1"
+    expected:
+      - principal: admin
+        actions:
+          update: EFFECT_ALLOW
+      - principal: user1
+        actions:
+          update: EFFECT_ALLOW
+      - principal: user2
+        actions:
+          update: EFFECT_DENY
+  - name: Update User2 by
+    input:
+      requestId: "test"
+      actions: ["update"]
+      resource: "user2"
+    expected:
+      - principal: admin
+        actions:
+          update: EFFECT_ALLOW
+      - principal: user1
+        actions:
+          update: EFFECT_DENY
+      - principal: user2
+        actions:
+          update: EFFECT_ALLOW
