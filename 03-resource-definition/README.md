@@ -91,7 +91,6 @@ resourcePolicy:
         - create
         - read
         - update
-        - delete
       effect: EFFECT_ALLOW
       roles:
         - user
@@ -114,7 +113,6 @@ resourcePolicy:
         - create
         - read
         - update
-        - delete
       effect: EFFECT_ALLOW
       roles:
         - user

@@ -1,0 +1,37 @@
+---
+name: ContactTestSuite
+description: Tests for verifying the contact resource policy
+resources:
+  contact_test:
+    kind: "contact"
+    attr:
+principals:
+  admin:
+    id: adminId
+    roles:
+      - admin
+    attr:
+  user:
+    id: userId
+    roles:
+      - user
+    attr:
+tests:
+  - name: Contact CRUD Actions
+    input:
+      requestId: "test"
+      actions: ["create", "read", "update", "delete"]
+      resource: "contact_test"
+    expected:
+      - principal: user
+        actions:
+          create: EFFECT_ALLOW
+          read: EFFECT_ALLOW
+          update: EFFECT_ALLOW
+          delete: EFFECT_DENY
+      - principal: admin
+        actions:
+          create: EFFECT_ALLOW
+          read: EFFECT_ALLOW
+          update: EFFECT_ALLOW
+          delete: EFFECT_ALLOW
