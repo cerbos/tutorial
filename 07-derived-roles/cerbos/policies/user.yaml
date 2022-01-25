@@ -13,6 +13,7 @@ resourcePolicy:
 
     - actions:
         - update
+        - delete
       effect: EFFECT_ALLOW
       roles:
         - user

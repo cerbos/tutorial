@@ -2,9 +2,14 @@
 name: CompanyTestSuite
 description: Tests for verifying the company resource policy
 resources:
-  company_test:
+  company1:
     kind: "company"
     attr:
+      ownerId: user1
+  company2:
+    kind: "company"
+    attr:
+      ownerId: user2
 principals:
   admin:
     id: admin
@@ -22,11 +27,11 @@ principals:
       - user
     attr:
 tests:
-  - name: Company CRUD Actions
+  - name: Company 1 CRUD Actions
     input:
       requestId: "test"
       actions: ["create", "read", "update", "delete"]
-      resource: "company_test"
+      resource: "company1"
     expected:
       - principal: admin
         actions:
@@ -40,6 +45,33 @@ tests:
           create: EFFECT_ALLOW
           read: EFFECT_ALLOW
           update: EFFECT_ALLOW
+          delete: EFFECT_ALLOW
+
+      - principal: user2
+        actions:
+          create: EFFECT_ALLOW
+          read: EFFECT_ALLOW
+          update: EFFECT_DENY
+          delete: EFFECT_DENY
+
+  - name: Company 2 CRUD Actions
+    input:
+      requestId: "test"
+      actions: ["create", "read", "update", "delete"]
+      resource: "company2"
+    expected:
+      - principal: admin
+        actions:
+          create: EFFECT_ALLOW
+          read: EFFECT_ALLOW
+          update: EFFECT_ALLOW
+          delete: EFFECT_ALLOW
+
+      - principal: user1
+        actions:
+          create: EFFECT_ALLOW
+          read: EFFECT_ALLOW
+          update: EFFECT_DENY
           delete: EFFECT_DENY
 
       - principal: user2
@@ -47,4 +79,4 @@ tests:
           create: EFFECT_ALLOW
           read: EFFECT_ALLOW
           update: EFFECT_ALLOW
-          delete: EFFECT_DENY
+          delete: EFFECT_ALLOW
