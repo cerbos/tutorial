@@ -1,0 +1,132 @@
+---
+name: ContactTestSuite
+description: Tests for verifying the contact resource policy
+resources:
+  contact1:
+    kind: "contact"
+    attr:
+      ownerId: user1
+      active: True
+  contact2:
+    kind: "contact"
+    attr:
+      ownerId: user2
+      active: True
+  contact3:
+    kind: "contact"
+    attr:
+      ownerId: user2
+      active: False
+principals:
+  admin:
+    id: admin
+    roles:
+      - admin
+    attr:
+  user1:
+    id: user1
+    roles:
+      - user
+    attr:
+  user2:
+    id: user2
+    roles:
+      - user
+    attr:
+  dpo1:
+    id: dpo1
+    roles:
+      - user
+    attr:
+tests:
+  - name: Contact 1 CRUD Actions
+    input:
+      requestId: "test"
+      actions: ["create", "read", "update", "delete"]
+      resource: "contact1"
+    expected:
+      - principal: admin
+        actions:
+          create: EFFECT_ALLOW
+          read: EFFECT_ALLOW
+          update: EFFECT_ALLOW
+          delete: EFFECT_ALLOW
+      - principal: user1
+        actions:
+          create: EFFECT_ALLOW
+          read: EFFECT_ALLOW
+          update: EFFECT_ALLOW
+          delete: EFFECT_ALLOW
+      - principal: user2
+        actions:
+          create: EFFECT_ALLOW
+          read: EFFECT_ALLOW
+          update: EFFECT_DENY
+          delete: EFFECT_DENY
+      - principal: dpo1
+        actions:
+          create: EFFECT_ALLOW
+          read: EFFECT_ALLOW
+          update: EFFECT_DENY
+          delete: EFFECT_ALLOW
+  - name: Contact 2 CRUD Actions
+    input:
+      requestId: "test"
+      actions: ["create", "read", "update", "delete"]
+      resource: "contact2"
+    expected:
+      - principal: admin
+        actions:
+          create: EFFECT_ALLOW
+          read: EFFECT_ALLOW
+          update: EFFECT_ALLOW
+          delete: EFFECT_ALLOW
+      - principal: user1
+        actions:
+          create: EFFECT_ALLOW
+          read: EFFECT_ALLOW
+          update: EFFECT_DENY
+          delete: EFFECT_DENY
+      - principal: user2
+        actions:
+          create: EFFECT_ALLOW
+          read: EFFECT_ALLOW
+          update: EFFECT_ALLOW
+          delete: EFFECT_ALLOW
+      - principal: dpo1
+        actions:
+          create: EFFECT_ALLOW
+          read: EFFECT_ALLOW
+          update: EFFECT_DENY
+          delete: EFFECT_ALLOW
+
+  - name: Contact 3 CRUD Actions
+    input:
+      requestId: "test"
+      actions: ["create", "read", "update", "delete"]
+      resource: "contact3"
+    expected:
+      - principal: admin
+        actions:
+          create: EFFECT_ALLOW
+          read: EFFECT_ALLOW
+          update: EFFECT_ALLOW
+          delete: EFFECT_ALLOW
+      - principal: user1
+        actions:
+          create: EFFECT_ALLOW
+          read: EFFECT_ALLOW
+          update: EFFECT_DENY
+          delete: EFFECT_DENY
+      - principal: user2
+        actions:
+          create: EFFECT_ALLOW
+          read: EFFECT_ALLOW
+          update: EFFECT_DENY
+          delete: EFFECT_DENY
+      - principal: dpo1
+        actions:
+          create: EFFECT_ALLOW
+          read: EFFECT_ALLOW
+          update: EFFECT_DENY
+          delete: EFFECT_ALLOW

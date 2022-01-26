@@ -28,7 +28,6 @@ The structure is similar to a resource policy but rather than defining actions w
 
 With this derived role policy setup a resource can import them and then make use of them in rules eg:
 
-
 ```yaml
 ---
 apiVersion: api.cerbos.dev/v1
@@ -56,3 +55,6 @@ resourcePolicy:
       roles:
         - admin
 ```
+
+## Extending Tests
+

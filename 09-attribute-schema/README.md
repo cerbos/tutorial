@@ -1,0 +1,124 @@
+# Attribute Schema
+
+An aditional check bit of business logic has been introduce for the `contact` resource which requires the `active` attribute of a contact to be set to `True` to be able to `update` or `delete` it. This is so that old contacts are kept for reporting purposes and can't be accidently deleted or updated.
+
+This now means there are two attributes of a `contact` resource that are now required for the policies to be computed - `ownerId` and `active`. If either of these is not included in the request to check permissions the result would not be as expected (defaulting to `EFFECT_DENY`).
+
+To prevent this mistake, it is possible to define a schema for the attributes of a principal and resources which Cerbos will validate against at request time to ensure all feilds are provided as expected,.
+
+## Defining Schema
+
+Atrribute schema are defined in JSON Schema (draft 2020-12) and stored in a special `_schemas` sub-directory along side the policies
+
+For our contact resource the schema looks like the following:
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "ownerId": { "type": "string" },
+    "active": { "type": "boolean" }
+  },
+  "required": ["ownerId", "active"]
+}
+```
+
+Once defined, it is then linked to the resouece via adding a reference in the policy:
+
+```yaml
+---
+apiVersion: api.cerbos.dev/v1
+resourcePolicy:
+  version: "default"
+  resource: "contact"
+  importDerivedRoles:
+    - cerbforce_derived_roles
+  rules:
+    - actions:
+        - create
+        - read
+      effect: EFFECT_ALLOW
+      roles:
+        - user
+
+    - actions:
+        - update
+        - delete
+      effect: EFFECT_ALLOW
+      derivedRoles:
+        - owner
+      condition:
+        match:
+          expr: request.resource.attr.active == true
+
+    - actions:
+        - "*"
+      effect: EFFECT_ALLOW
+      roles:
+        - admin
+  schemas:
+    resourceSchema:
+      ref: cerbos:///contact.json
+```
+
+The same can be done with attributes of a principal - you can find out more in [the documentation](https://docs.cerbos.dev/cerbos/latest/policies/schemas.html).
+
+## Enforcing Schema
+
+Validating the request against the schema is done at request time by the server - to enable this a [new schema configuration block](https://docs.cerbos.dev/cerbos/latest/configuration/schema.html) needs adding to the `config.yaml` .
+
+```yaml
+---
+server:
+  httpListenAddr: ":3592"
+storage:
+  driver: "disk"
+  disk:
+    directory: /tutorial/policies
+schema:
+  enforcement: reject
+```
+
+With this now in place, any request that is made to check authorization of a `contact` resource will now be rejected if the attributes are not provided or of the wrong type:
+
+_Request_
+```json
+{
+  "principal": {
+    "id": "user_1",
+    "roles": ["user"],
+    "attr": {}
+  },
+  "resource": {
+    "kind": "contact",
+    "instances": {
+      "contact_1": {
+        "attr": {
+          "ownerId": "user1"
+        }
+      }
+    }
+  },
+  "actions": ["read"]
+}
+```
+
+_Response_
+```json
+{
+  "resourceInstances": {
+    "contact_1": {
+      "actions": {
+        "read": "EFFECT_DENY"
+      },
+      "validationErrors": [
+        {
+          "message": "missing properties: 'active'",
+          "source": "SOURCE_RESOURCE"
+        }
+      ]
+    }
+  }
+}
+```

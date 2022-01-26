@@ -13,8 +13,8 @@ This tutorial will walk through the decision-making process for implementing Cer
 - [Testing Policies](05-testing-policies/README.md)
 - [Adding Conditions](06-adding-conditions/README.md)
 - [Derived Roles](07-derived-roles/README.md)
-- Principal Policies
-- Attribute Schema
+- [Principal Policies](08-principal-policies/README.md)
+- [Attribute Schema](09-attribute-schema/README.md)
 - Policy Stores
 - Deployment Patterns
 - Integrating into your App
