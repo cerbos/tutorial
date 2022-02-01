@@ -55,6 +55,3 @@ resourcePolicy:
       roles:
         - admin
 ```
-
-## Extending Tests
-
