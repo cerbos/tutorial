@@ -10,18 +10,7 @@ The business requirements for Cerbforce state that only an owner of Contacts and
  In the Cerbforce data model, the `contact` and `company` both have an attribute called `ownerId` which is the ID of the user that created the record. Rather than adding a condition to both of these resource policies, we are going to create a derived role which gives the principal and additoinal `owner` role within the context of the request. The policy for this is as follows:
 
  ```yaml
- ---
-apiVersion: "api.cerbos.dev/v1"
-description: |-
-  Common dynamic roles used within the Cerbforce app
-derivedRoles:
-  name: cerbforce_derived_roles
-  definitions:
-    - name: owner
-      parentRoles: ["user"]
-      condition:
-        match:
-          expr: request.resource.attr.ownerId == request.principal.id
+{{#include ./cerbos/policies/cerbforce_derived_roles.yaml}}
 ```
 
 The structure is similar to a resource policy but rather than defining actions with conditions, it defines roles which are an extension of the listed `parentRoles` and can have any number of conditions as with resources.
@@ -29,29 +18,5 @@ The structure is similar to a resource policy but rather than defining actions w
 With this derived role policy setup a resource can import them and then make use of them in rules eg:
 
 ```yaml
----
-apiVersion: api.cerbos.dev/v1
-resourcePolicy:
-  version: "default"
-  resource: "contact"
-  rules:
-    - actions:
-        - create
-        - read
-      effect: EFFECT_ALLOW
-      roles:
-        - user
-
-    - actions:
-        - update
-        - delete
-      effect: EFFECT_ALLOW
-      derivedRoles:
-        - owner
-
-    - actions:
-        - "*"
-      effect: EFFECT_ALLOW
-      roles:
-        - admin
+{{#include ./cerbos/policies/contact.yaml}}
 ```

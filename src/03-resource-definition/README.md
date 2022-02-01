@@ -58,70 +58,17 @@ In this case a request made for a principal with a the role of `user` is granted
 To simplify things further, we want admins to be able to do every action so a special `*` wildcard action can be used to keep things clean:
 
 ```yaml
----
-apiVersion: api.cerbos.dev/v1
-resourcePolicy:
-  version: "default" 
-  resource: "user"
-  rules:
-    - actions: 
-        - create
-        - read
-      effect: EFFECT_ALLOW
-      roles:
-        - user 
-
-    - actions: 
-        - '*'
-      effect: EFFECT_ALLOW
-      roles:
-        - admin         
+{{#include ./cerbos/policies/user.yaml}}  
 ```
 
 Our `contact` and `company` resources have a similiar structure at this stage and can be modeled as so:
 
 ```yaml
----
-apiVersion: api.cerbos.dev/v1
-resourcePolicy:
-  version: "default"
-  resource: "contact"
-  rules:
-    - actions:
-        - create
-        - read
-        - update
-      effect: EFFECT_ALLOW
-      roles:
-        - user
-
-    - actions:
-        - "*"
-      effect: EFFECT_ALLOW
-      roles:
-        - admin
+{{#include ./cerbos/policies/contact.yaml}}
 ```
 
 ```yaml
----
-apiVersion: api.cerbos.dev/v1
-resourcePolicy:
-  version: "default"
-  resource: "company"
-  rules:
-    - actions:
-        - create
-        - read
-        - update
-      effect: EFFECT_ALLOW
-      roles:
-        - user
-
-    - actions:
-        - "*"
-      effect: EFFECT_ALLOW
-      roles:
-        - admin
+{{#include ./cerbos/policies/company.yaml}}
 ```
 
 

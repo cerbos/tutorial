@@ -13,53 +13,13 @@ Atrribute schema are defined in JSON Schema (draft 2020-12) and stored in a spec
 For our contact resource the schema looks like the following:
 
 ```json
-{
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "type": "object",
-  "properties": {
-    "ownerId": { "type": "string" },
-    "active": { "type": "boolean" }
-  },
-  "required": ["ownerId", "active"]
-}
+{{#include ./cerbos/policies/_schemas/contact.json}}
 ```
 
 Once defined, it is then linked to the resouece via adding a reference in the policy:
 
 ```yaml
----
-apiVersion: api.cerbos.dev/v1
-resourcePolicy:
-  version: "default"
-  resource: "contact"
-  importDerivedRoles:
-    - cerbforce_derived_roles
-  rules:
-    - actions:
-        - create
-        - read
-      effect: EFFECT_ALLOW
-      roles:
-        - user
-
-    - actions:
-        - update
-        - delete
-      effect: EFFECT_ALLOW
-      derivedRoles:
-        - owner
-      condition:
-        match:
-          expr: request.resource.attr.active == true
-
-    - actions:
-        - "*"
-      effect: EFFECT_ALLOW
-      roles:
-        - admin
-  schemas:
-    resourceSchema:
-      ref: cerbos:///contact.json
+{{#include ./cerbos/policies/contact.yaml}}
 ```
 
 The same can be done with attributes of a principal - you can find out more in [the documentation](https://docs.cerbos.dev/cerbos/latest/policies/schemas.html).
@@ -69,15 +29,7 @@ The same can be done with attributes of a principal - you can find out more in [
 Validating the request against the schema is done at request time by the server - to enable this a [new schema configuration block](https://docs.cerbos.dev/cerbos/latest/configuration/schema.html) needs adding to the `config.yaml` .
 
 ```yaml
----
-server:
-  httpListenAddr: ":3592"
-storage:
-  driver: "disk"
-  disk:
-    directory: /tutorial/policies
-schema:
-  enforcement: reject
+{{#include ./cerbos/config/conf.yaml}}
 ```
 
 With this now in place, any request that is made to check authorization of a `contact` resource will now be rejected if the attributes are not provided or of the wrong type:

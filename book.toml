@@ -3,4 +3,8 @@ authors = ["Cerbos"]
 language = "en"
 multilingual = false
 src = "src"
-title = "Cerbos Introduction"
+title = "Cerbos Guide"
+
+[output.html]
+google-analytics = "UA-193705928-1"
+git-repository-url = "https://github.com/cerbos/tutorial"
