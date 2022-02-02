@@ -7,6 +7,4 @@ title = "Cerbos Guide"
 
 [output.html]
 git-repository-url = "https://github.com/cerbos/tutorial"
-theme = "ayu"
-default-theme = "ayu"
-preferred-dark-theme = "ayu"
+theme = "theme"
