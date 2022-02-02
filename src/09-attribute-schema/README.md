@@ -10,7 +10,7 @@ To prevent this mistake, it is possible to define a [schema](https://docs.cerbos
 
 ## Defining schema
 
-[Atrribute schema](https://docs.cerbos.dev/cerbos/latest/policies/schemas.html) are defined in JSON Schema (draft 2020-12) and stored in a special `_schemas` sub-directory along side the policies
+[Atrribute schema](https://docs.cerbos.dev/cerbos/latest/policies/schemas.html) are defined in [JSON Schema (draft 2020-12)](https://json-schema.org/specification.html) and stored in a special `_schemas` sub-directory along side the policies
 
 For the contact resource the schema looks like the following:
 

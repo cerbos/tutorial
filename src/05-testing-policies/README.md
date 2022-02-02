@@ -54,7 +54,10 @@ With this defined, you can now extend the compile command to also run the tests 
 
 ```sh
 # Using Container
-docker run --rm --name cerbos -t -v /tutorial:/tutorial -p 3592:3592 ghcr.io/cerbos/cerbos:latest compile --tests=/tutorial/tests /tutorial/policies
+docker run --rm --name cerbos -t \
+  -v /tutorial:/tutorial \
+  -p 3592:3592 \
+  ghcr.io/cerbos/cerbos:latest compile --tests=/tutorial/tests /tutorial/policies
 
 # Using Binary
 ./cerbos compile --tests=/tutorial/tests /tutorial/policies

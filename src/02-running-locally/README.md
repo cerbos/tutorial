@@ -27,7 +27,10 @@ With the configuration defined there are two options to choose from for running 
 If you have Docker you can simply use the published images. You need to mount the folder created in the preceeding step into the container for it to be able to read the policies:
 
 ```sh
-docker run --rm --name cerbos -t -v /tutorial:/tutorial -p 3592:3592 ghcr.io/cerbos/cerbos:latest server --config=/tutorial/config/conf.yaml
+docker run --rm --name cerbos -t \
+  -v /tutorial:/tutorial \
+  -p 3592:3592 \
+  ghcr.io/cerbos/cerbos:latest server --config=/tutorial/config/conf.yaml
 ```
 
 ## Binary

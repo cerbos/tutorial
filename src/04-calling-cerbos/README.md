@@ -11,7 +11,9 @@ To start you need to launch the server:
 
 ```sh
 # Using Container
-docker run --rm --name cerbos -t -v /tutorial:/tutorial -p 3592:3592 ghcr.io/cerbos/cerbos:latest server --config=/tutorial/config/conf.yaml
+docker run --rm --name cerbos -t \
+  -v /tutorial:/tutorial \
+  -p 3592:3592 ghcr.io/cerbos/cerbos:latest server --config=/tutorial/config/conf.yaml
 
 # Using Binary
 ./cerbos server --config=/tutorial/config/conf.yaml

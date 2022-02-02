@@ -82,7 +82,9 @@ If you are running Cerbos in a container then mount the folder containing your p
 
 ```sh
 # Using Container
-docker run --rm --name cerbos -t -v /tutorial:/tutorial ghcr.io/cerbos/cerbos:latest compile /tutorial/policies
+docker run --rm --name cerbos -t \
+  -v /tutorial:/tutorial \
+  ghcr.io/cerbos/cerbos:latest compile /tutorial/policies
 
 # Using Binary
 ./cerbos compile /tutorial/policies
