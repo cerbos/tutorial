@@ -21,7 +21,7 @@ resourcePolicy:
 # ....other conditions
 ```
 
-This blanket approach is where using pure role-based access controls falls down as there is more nuiance required.
+This blanket approach is where using pure role-based access controls falls down as there is more nuianced required to meet the requirements..
 
 ## Conditions
 
@@ -29,7 +29,7 @@ Cerbos is a powerful Attribute-based Access Control system which can make contex
 
 In this senario, Cerbforce's business logic states that a user can only update their own user profile. To implement this a check needs to be made to ensure the ID of the user making the request matches the ID of the user resource being updated.
 
-Conditions in Cerbos are written in Common Expression Language (CEL) which is a simple way of defining boolean logic of conditions. In this enviroment there are two main bits of data provided that are of interest `request.principal` which is the information about the user making the request and `request.resource` which is the information about the resource being accessed.
+[Conditions](https://docs.cerbos.dev/cerbos/latest/policies/conditions.html) in Cerbos are written in [Common Expression Language (CEL)](https://github.com/google/cel-spec/blob/master/doc/intro.md) which is a simple way of defining boolean logic of conditions. In this enviroment there are two main bits of data provided that are of interest `request.principal` which is the information about the user making the request and `request.resource` which is the information about the resource being accessed.
 
 The data model for each of these is as follows:
 
@@ -85,74 +85,12 @@ resourcePolicy:
 # ....other conditions
 ```
 
-Complex logic can be defined in conditions (or sets of conditions) which you can read more about in the docs.
+Complex logic can be defined in conditions (or sets of conditions) which you can read more about in [the docs](https://docs.cerbos.dev/cerbos/latest/policies/conditions.html).
 
 # Extending tests
 
 Now that you have a conditional policy, you can add these as test cases in the user tests. You can now define multiple `user` resources and principals and create test cases for ensuring the `update` action is allowed when the ID of the principal matches the ID of the resource, aswell as checking that it isn't allowed if the condition is not met.
 
 ```yaml
----
-name: UserTestSuite
-description: Tests for verifying the user resource policy
-resources:
-  admin:
-    kind: "user"
-    id: "admin"
-    attr:
-  user1:
-    kind: "user"
-    id: "user1"
-    attr:
-  user2:
-    kind: "user"
-    id: "user2"
-    attr:
-principals:
-  admin:
-    id: admin
-    roles:
-      - admin
-    attr:
-  user1:
-    id: user1
-    roles:
-      - user
-    attr:
-  user2:
-    id: user2
-    roles:
-      - user
-    attr:
-tests:
-  - name: Update Admin by
-    input:
-      requestId: "test"
-      actions: ["update"]
-      resource: "admin"
-    expected:
-      - principal: admin
-        actions:
-          update: EFFECT_ALLOW
-      - principal: user1
-        actions:
-          update: EFFECT_DENY
-      - principal: user2
-        actions:
-          update: EFFECT_DENY
-  - name: Update User1 by
-    input:
-      requestId: "test"
-      actions: ["update"]
-      resource: "user1"
-    expected:
-      - principal: admin
-        actions:
-          update: EFFECT_ALLOW
-      - principal: user1
-        actions:
-          update: EFFECT_ALLOW
-      - principal: user2
-        actions:
-          update: EFFECT_DENY
+{{#include ./cerbos/tests/user_test.yaml}}
 ```

@@ -2,7 +2,7 @@
 
 > The policies for this section can be found [on Github](https://github.com/cerbos/tutorial/tree/main/src/05-testing-policies/cerbos).
 
-Cerbos allows you to wrtie tests for policies and run them as part of the compilation stage to make sure that the policies do exactly what you expect. This saves the manual effort of running example requests over and over to ensure the policy logic is as you expect.
+Cerbos allows you to wrtie [tests for policies](https://docs.cerbos.dev/cerbos/latest/policies/compile.html) and run them as part of the compilation stage to make sure that the policies do exactly what you expect. This saves the manual effort of running example requests over and over to ensure the policy logic is as you expect.
 
 A test suite defines a number of resources and principals and the expected result of actions for any combination of them.
 
@@ -50,7 +50,7 @@ tests: 
           delete: EFFECT_ALLOW
 ```
 
-With this defined, you can now extend the compile command to also run the tests eg:
+With this defined, you can now extend the compile command to also run the tests for example:
 
 ```sh
 # Using Container
@@ -68,3 +68,5 @@ Test results
 == 'Contact Actions' by principal 'user' [OK]
 == 'Contact Actions' by principal 'admin' [OK]
 ```
+
+Full testing documentation can be found [here](https://docs.cerbos.dev/cerbos/latest/policies/compile.html).

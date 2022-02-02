@@ -95,6 +95,8 @@ The response object looks as follows where for each instance of the resource the
 }
 ```
 
+You can find the Swagger defintion of the Cerbos API via going to the root of the Cerbos instance - for examle [http://localhost:3592](http://localhost:3592) if running on the default port.
+
 # Conclusion
 
 Now that you have made the first call to Cerbos you can move on to a way of checking policy logic without having to make individual calls each time by writing unit tests.

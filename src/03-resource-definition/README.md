@@ -4,11 +4,11 @@
 
 ## Authentication roles
 
-To begin with Cerbos needs to know about the basic roles which are provided by your authentication provider. In the case of Cerbforce, Auth0 provides a role of either `ADMIN` or `USER` for all profiles. This is important when starting to define access ot resources below - for now just make a note of them.
+To begin with Cerbos needs to know about the basic roles which are provided by your authentication provider. In the case of Cerbforce, [Auth0](https://cerbos.dev/ecosystem/cerbos-auth0) provides a role of either `ADMIN` or `USER` for all profiles. This is important when starting to define access ot resources below - for now just make a note of them.
 
 ## Resources
 
-The best place to start with defining policies is listing out all the resoueces and their actions that exist in the system. A resource is an entity type that users are authroized access too.
+The best place to start with defining [policies](https://docs.cerbos.dev/cerbos/latest/policies/index.html) is listing out all the resoueces and their actions that exist in the system. A resource is an entity type that users are authroized access too.
 
 In the case of Cerbforce some of the resources and actions are as follows:
 
@@ -18,7 +18,7 @@ In the case of Cerbforce some of the resources and actions are as follows:
 | Company | Create, Read, Update, Delete |
 | Contact | Create, Read, Update, Delete |
 
-With this as a start you can begin creating your first Cerbos policy - a Resource Policy.
+With this as a start you can begin creating your first Cerbos policy - a [resource policy](https://docs.cerbos.dev/cerbos/latest/policies/resource_policies.html).
 
 
 ## Resource policies
@@ -52,6 +52,8 @@ resourcePolicy:
 The structure of a resource poliicy requires a name to be set on the `resource` key and then a list of rules are defined. A rule defines a list of actions on the resource, the effect of the rule (`EFFECT_ALLOW` or `EFFECT_DENY`) and then feilds to state who this applies to - in this simple case a list of `roles` which is checked for in the roles of the user making the request.
 
 In this case a request made for a principal with a the role of `user` is granted only `create` and `read` actions whilst an `admin` role can also perform `update`, `delete` actions.
+
+The full documentation for resource policies can be found [here](https://docs.cerbos.dev/cerbos/latest/policies/resource_policies.html).
 
 ## Wildcard action
 

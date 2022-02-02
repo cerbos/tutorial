@@ -20,7 +20,7 @@ Save this file in a directory for example `/tutorial/config/conf.yaml` and also 
 
 You can find the full configuration schema in the [Cerbos docs](https://docs.cerbos.dev/cerbos/latest/configuration/index.html).
 
-With the configuration defined there are two ways to run an instance of Cerbos locally:
+With the configuration defined there are two options to choose from for running Cerbos locally.
 
 ## Container
 

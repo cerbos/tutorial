@@ -6,11 +6,11 @@ An aditional check bit of business logic has been introduce for the `contact` re
 
 This now means there are two attributes of a `contact` resource that are now required for the policies to be computed - `ownerId` and `active`. If either of these is not included in the request to check permissions the result would not be as expected (defaulting to `EFFECT_DENY`).
 
-To prevent this mistake, it is possible to define a schema for the attributes of a principal and resources which Cerbos validates against at request time to ensure all feilds are provided as expected,.
+To prevent this mistake, it is possible to define a [schema](https://docs.cerbos.dev/cerbos/latest/policies/schemas.html) for the attributes of a principal and resources which Cerbos validates against at request time to ensure all feilds are provided as expected,.
 
 ## Defining schema
 
-Atrribute schema are defined in JSON Schema (draft 2020-12) and stored in a special `_schemas` sub-directory along side the policies
+[Atrribute schema](https://docs.cerbos.dev/cerbos/latest/policies/schemas.html) are defined in JSON Schema (draft 2020-12) and stored in a special `_schemas` sub-directory along side the policies
 
 For the contact resource the schema looks like the following:
 
