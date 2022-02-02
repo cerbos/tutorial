@@ -11,3 +11,7 @@
 - [Derived Roles](./07-derived-roles/README.md)
 - [Principal Policies](./08-principal-policies/README.md)
 - [Attribute Schema](./09-attribute-schema/README.md)
+- [Integrating Cerbos](./10-integrating-cerbos/README.md)
+- [Running in Production]()
+- [Audit Trail]()
+- [Query Planner]()
