@@ -1,5 +1,7 @@
 # Testing policies
 
+> The policies for this section can be found [on Github](https://github.com/cerbos/tutorial/tree/main/src/05-testing-policies/cerbos).
+
 Cerbos allows you to wrtie tests for policies and run them as part of the compilation stage to make sure that the policies do exactly what you expect. This saves the manual effort of running example requests over and over to ensure the policy logic is as you expect.
 
 A test suite defines a number of resources and principals and the expected result of actions for any combination of them.

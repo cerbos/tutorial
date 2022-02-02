@@ -1,5 +1,7 @@
 # Adding conditions
 
+> The policies for this section can be found [on Github](https://github.com/cerbos/tutorial/tree/main/src/06-adding-conditions/cerbos).
+
 In the previous section a RBAC policy was created that allowed anyone with a the `user` role to update a user resource - this isn't what is intended as it would allow user's to update other user's profile. 
 
 ```yaml

@@ -1,4 +1,4 @@
-# Introduction to Cerbos
+# Cerbos
 
 ## Authorization-as-a-Service
 

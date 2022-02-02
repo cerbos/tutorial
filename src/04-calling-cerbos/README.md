@@ -2,6 +2,8 @@
 
 # Calling Cerbos
 
+> The policies for this section can be found [on Github](https://github.com/cerbos/tutorial/tree/main/src/04-calling-cerbos/cerbos).
+
 Now that you know the policies are valid, it is time to make your first call to Cerbos to make an authorization check.
 
 ## Starting Cerbos

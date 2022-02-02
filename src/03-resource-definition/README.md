@@ -1,6 +1,6 @@
 # Policy authoring
 
-> The policies created below can be found in `./cerbos/policies`.
+> The policies for this section can be found [on Github](https://github.com/cerbos/tutorial/tree/main/src/03-resource-definition/cerbos).
 
 ## Authentication roles
 

@@ -1,5 +1,7 @@
 # Attribute schema
 
+> The policies for this section can be found [on Github](https://github.com/cerbos/tutorial/tree/main/src/09-attribute-schema/cerbos).
+
 An aditional check bit of business logic has been introduce for the `contact` resource which requires the `active` attribute of a contact to be set to `True` to be able to `update` or `delete` it. This is so that old contacts are kept for reporting purposes and can't be accidently deleted or updated.
 
 This now means there are two attributes of a `contact` resource that are now required for the policies to be computed - `ownerId` and `active`. If either of these is not included in the request to check permissions the result would not be as expected (defaulting to `EFFECT_DENY`).

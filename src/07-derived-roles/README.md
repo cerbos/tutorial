@@ -1,5 +1,7 @@
 # Derived roles
 
+> The policies for this section can be found [on Github](https://github.com/cerbos/tutorial/tree/main/src/07-derived-roles/cerbos).
+
 The business requirements for Cerbforce state that only an owner of Contacts and Companies are allowed to delete them from the system. With Cerbos, the aim is to keep polcies as simple as possible and not repeat logic across different resources, so in this situation a [Derived Role](https://docs.cerbos.dev/cerbos/latest/policies/derived_roles.html) can help up.
 
 

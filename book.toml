@@ -6,5 +6,7 @@ src = "src"
 title = "Cerbos Guide"
 
 [output.html]
-google-analytics = "UA-193705928-1"
 git-repository-url = "https://github.com/cerbos/tutorial"
+theme = "ayu"
+default-theme = "ayu"
+preferred-dark-theme = "ayu"

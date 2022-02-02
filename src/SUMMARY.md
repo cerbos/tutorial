@@ -2,7 +2,7 @@
 
 [Introduction](./INTRODUCTION.md)
 
-- [Introduction to Cerbos](./01-introduction-to-cerbos/README.md)
+- [What is Cerbos?](./01-what-is-cerbos/README.md)
 - [Running Locally](./02-running-locally/README.md)
 - [Resource Definition](./03-resource-definition/README.md)
 - [Calling Cerbos](./04-calling-cerbos/README.md)
