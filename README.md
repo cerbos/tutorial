@@ -1,1 +1,1 @@
-[https://book.cerbos.dev/](View Guide)
+[Read Guide](https://book.cerbos.dev/)
