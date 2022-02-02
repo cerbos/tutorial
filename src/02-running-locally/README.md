@@ -1,8 +1,8 @@
-# Running Locally
+# Running locally
 
 As the developers of Cerbforce began their investigation of the system the first step was getting a Cerbos instance up and running locally.
 
-## Config File
+## Config file
 
 The first step is to create a server configuration file. The most simple configuration to get up and running using a local folder for storage of policies requires only the port and location to be set.
 
@@ -16,7 +16,7 @@ storage:
     directory: /policies
 ```
 
-Save this file in a directory eg `/tutorial/config/conf.yaml` and also create an empty policy folder eg `/tutorial/policies`
+Save this file in a directory for example `/tutorial/config/conf.yaml` and also create an empty policy folder for example `/tutorial/policies`
 
 You can find the full configuration schema in the [Cerbos docs](https://docs.cerbos.dev/cerbos/latest/configuration/index.html).
 
@@ -24,7 +24,7 @@ With the configuration defined there are two ways to run an instance of Cerbos l
 
 ## Container
 
-If you have Docker you can simply use the published images. You will need to mount the folder created in the above into the container for it to be able to read the policies:
+If you have Docker you can simply use the published images. You need to mount the folder created in the preceeding step into the container for it to be able to read the policies:
 
 ```sh
 docker run --rm --name cerbos -t -v /tutorial:/tutorial -p 3592:3592 ghcr.io/cerbos/cerbos:latest server --config=/tutorial/config/conf.yaml

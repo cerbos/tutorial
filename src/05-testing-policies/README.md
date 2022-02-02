@@ -1,4 +1,4 @@
-# Testing Policies
+# Testing policies
 
 Cerbos allows you to wrtie tests for policies and run them as part of the compilation stage to make sure that the policies do exactly what you expect. This saves the manual effort of running example requests over and over to ensure the policy logic is as you expect.
 
@@ -6,7 +6,7 @@ A test suite defines a number of resources and principals and the expected resul
 
 To define a test suite, create a `tests` folder along side your policy folder. This this folder any number of tests can be fined as YAML but the file must end with `_test`.
 
-As an example, our `contact` policy states that a `user` can create, read and update a contact, but only an `admin` can delete them - therefore we can create a test suite for this like the below:
+As an example, the `contact` policy states that a `user` can create, read and update a contact, but only an `admin` can delete them - therefore you can create a test suite for this like the below:
 
 ```yaml
 ---
@@ -48,7 +48,7 @@ tests: 
           delete: EFFECT_ALLOW
 ```
 
-With this defined, we can now extend the compile command to also run the tests eg:
+With this defined, you can now extend the compile command to also run the tests eg:
 
 ```sh
 # Using Container

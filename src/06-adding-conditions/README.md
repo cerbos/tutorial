@@ -1,6 +1,6 @@
-# Adding Conditions
+# Adding conditions
 
-In the previous section a RBAC policy was created that allowed anyone with a the `user` role to update a user resource - this isn't what we intended as it would allow user's to update other user's profile. 
+In the previous section a RBAC policy was created that allowed anyone with a the `user` role to update a user resource - this isn't what is intended as it would allow user's to update other user's profile. 
 
 ```yaml
 ---
@@ -54,7 +54,7 @@ Using this information a check to see if the prinicpal ID is the same as the ID 
 
 `request.resource.id == request.principal.id`
 
-Adding this to the policy request a new rule to be created that is just for the `update` and `delete` actions which is for the `user` role and has a single condition as per the above.
+Adding this to the policy request a new rule to be created that is just for the `update` and `delete` actions which is for the `user` role and has a single condition.
 
 ```yaml
 ---
@@ -85,9 +85,9 @@ resourcePolicy:
 
 Complex logic can be defined in conditions (or sets of conditions) which you can read more about in the docs.
 
-# Extending Tests
+# Extending tests
 
-Now that we have a conditional policy, we can add these as test cases in our user tests. We can now define multiple `user` resources and principals and create test cases for ensuring the `update` action is allowed when the ID of the principal matches the ID of the resource, aswell as checking that it isn't allowed if the condition is not met.
+Now that you have a conditional policy, you can add these as test cases in the user tests. You can now define multiple `user` resources and principals and create test cases for ensuring the `update` action is allowed when the ID of the principal matches the ID of the resource, aswell as checking that it isn't allowed if the condition is not met.
 
 ```yaml
 ---

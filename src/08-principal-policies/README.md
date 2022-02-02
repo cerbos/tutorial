@@ -1,4 +1,4 @@
-# Principal Policies
+# Principal policies
 
 The final type of policy that Cerbos supports is a principal policy which is a special type which allows user specific overrides to be defined.
 
@@ -8,4 +8,4 @@ In the case of Cerbforce there is a Data Protection Officer (DPO) that handles a
 {{#include ./cerbos/policies/dpo.yaml}}
 ```
 
-With this policy in place, when an authorization check is made with the principal ID of `dpo1` the delete action on a `contact` resource will be overriden to be allowed.
+With this policy in place, when an authorization check is made with the principal ID of `dpo1` the delete action on a `contact` resource are overriden to be allowed.

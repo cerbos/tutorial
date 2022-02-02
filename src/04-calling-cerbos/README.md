@@ -2,10 +2,10 @@
 
 # Calling Cerbos
 
-Now that we know the policies are valid, it is time to make our first call to Cerbos to make an authorization check.
+Now that you know the policies are valid, it is time to make your first call to Cerbos to make an authorization check.
 
 ## Starting Cerbos
-To start we need to launch the server like we did in the previous section:
+To start you need to launch the server:
 
 ```sh
 # Using Container
@@ -27,13 +27,13 @@ Once Cerbos has started up you should see an output confirming that there are 3 
 At this point how you make a request to the Cerbos instance is down to your preference - a simple cURL command could surfice or using a GUI such as Postman also works.
 
 
-## Cerbos Check Call
+## Cerbos check call
 
 A call to Cerbos contains 3 key bits of information:
 
 1. The Principal - who is making the request
 2. The Resources - a map of entities of a resource kind that are they requesting access too
-3. The Action(s) - what actions are they trying to person on the entities
+3. The Actions - what actions are they trying to person on the entities
 
 The request payload to the `/api/check` endpoint takes these 3 bit of information as JSON:
 
@@ -79,7 +79,7 @@ curl --location --request POST 'http://localhost:3592/api/check' \
     }'
 ```
 
-The response object will look as follows where for each instance of the resource the authorization decision for each action is either `EFFECT_ALLOW` or `EFFECT_DENY` depending on the policies:
+The response object looks as follows where for each instance of the resource the authorization decision for each action is either `EFFECT_ALLOW` or `EFFECT_DENY` depending on the policies:
 
 ```json
 {
@@ -95,4 +95,4 @@ The response object will look as follows where for each instance of the resource
 
 # Conclusion
 
-Now we have made the first call to Cerbos we can move on to a way of checking policy logic without having to make individual calls each change by writing unit tests.
+Now that you have made the first call to Cerbos you can move on to a way of checking policy logic without having to make individual calls each time by writing unit tests.
