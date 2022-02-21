@@ -22,13 +22,13 @@ docker run --rm --name cerbos -t \
 Once Cerbos has started up you should see an output confirming that there are 3 policies loaded and ready to start processing authorization checks:
 
 ```sh
-2022-01-25T09:46:03.370Z	INFO	cerbos.server	maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined
-2022-01-25T09:46:03.382Z	INFO	cerbos.index	Found 3 executable policies
-2022-01-25T09:46:03.383Z	INFO	cerbos.grpc	Starting gRPC server at :3593
-2022-01-25T09:46:03.383Z	INFO	cerbos.http	Starting HTTP server at :3592
+2022-01-25T09:46:03.370Z  INFO  cerbos.server maxprocs: Leaving GOMAXPROCS=4: CPU quota undefined
+2022-01-25T09:46:03.382Z  INFO  cerbos.index  Found 3 executable policies
+2022-01-25T09:46:03.383Z  INFO  cerbos.grpc Starting gRPC server at :3593
+2022-01-25T09:46:03.383Z  INFO  cerbos.http Starting HTTP server at :3592
 ````
 
-At this point how you make a request to the Cerbos instance is down to your preference - a simple cURL command could surfice or using a GUI such as Postman also works.
+At this point how you make a request to the Cerbos instance is down to your preference - a simple cURL command or using a GUI such as Postman also works.
 
 
 ## Cerbos check call
@@ -39,7 +39,7 @@ A call to Cerbos contains 3 key bits of information:
 2. The Resources - a map of entities of a resource kind that are they requesting access too
 3. The Actions - what actions are they trying to person on the entities
 
-The request payload to the `/api/check` endpoint takes these 3 bit of information as JSON:
+The request payload to the `/api/check` endpoint takes these 3 bits of information as JSON:
 
 ```json
 {
@@ -97,7 +97,7 @@ The response object looks as follows where for each instance of the resource the
 }
 ```
 
-You can find the Swagger defintion of the Cerbos API via going to the root of the Cerbos instance - for examle [http://localhost:3592](http://localhost:3592) if running on the default port.
+You can find the Swagger definition of the Cerbos API via going to the root of the Cerbos instance - for example [http://localhost:3592](http://localhost:3592) if running on the default port.
 
 # Conclusion
 

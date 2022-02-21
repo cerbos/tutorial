@@ -2,11 +2,11 @@
 
 > The policies for this section can be found [on Github](https://github.com/cerbos/tutorial/tree/main/src/05-testing-policies/cerbos).
 
-Cerbos allows you to wrtie [tests for policies](https://docs.cerbos.dev/cerbos/latest/policies/compile.html) and run them as part of the compilation stage to make sure that the policies do exactly what you expect. This saves the manual effort of running example requests over and over to ensure the policy logic is as you expect.
+Cerbos allows you to write [tests for policies](https://docs.cerbos.dev/cerbos/latest/policies/compile.html) and run them as part of the compilation stage to make sure that the policies do exactly what you expect. This saves the manual effort of running example requests over and over to ensure the policy logic is as you expect.
 
 A test suite defines a number of resources and principals and the expected result of actions for any combination of them.
 
-To define a test suite, create a `tests` folder along side your policy folder. This this folder any number of tests can be fined as YAML but the file must end with `_test`.
+To define a test suite, create a `tests` folder alongside your policy folder. In this folder, any number of tests can be fined as YAML but the file must end with `_test`.
 
 As an example, the `contact` policy states that a `user` can create, read and update a contact, but only an `admin` can delete them - therefore you can create a test suite for this like the below:
 
@@ -29,7 +29,7 @@ principals: # the different users
     roles:
       - user
     attr:
-tests: 
+tests: 
   - name: Contact CRUD Actions
     input: # the resource from above to test and the actions
       requestId: "test"

@@ -18,7 +18,7 @@ Cerbos' approach is to define all policy as human-readable policy definitions he
 
 ## Bring your own identity
 
-Cerbforce has standardized on using Auth0 for authentication across their suite of applications. This contains the user profile information such as what role the user has, which department they belong too and what office they are based in.
+Cerbforce has standardized on using Auth0 for authentication across their suite of applications. This contains the user profile information such as what role the user has, which department they belong to and what office they are based in.
 
 Cerbos can consume an identity from any authentication provider be it homegrown or a managed service and can even natively support JWTs including verification.
 

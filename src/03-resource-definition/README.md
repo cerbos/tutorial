@@ -4,11 +4,11 @@
 
 ## Authentication roles
 
-To begin with Cerbos needs to know about the basic roles which are provided by your authentication provider. In the case of Cerbforce, [Auth0](https://cerbos.dev/ecosystem/cerbos-auth0) provides a role of either `ADMIN` or `USER` for all profiles. This is important when starting to define access ot resources below - for now just make a note of them.
+To begin with Cerbos needs to know about the basic roles which are provided by your authentication provider. In the case of Cerbforce, [Auth0](https://cerbos.dev/ecosystem/cerbos-auth0) provides a role of either `ADMIN` or `USER` for all profiles. This is important when starting to define access to resources below - for now just make a note of them.
 
 ## Resources
 
-The best place to start with defining [policies](https://docs.cerbos.dev/cerbos/latest/policies/index.html) is listing out all the resoueces and their actions that exist in the system. A resource is an entity type that users are authroized access too.
+The best place to start with defining [policies](https://docs.cerbos.dev/cerbos/latest/policies/index.html) is listing out all the resources and their actions that exist in the system. A resource is an entity type that users are authorized to access.
 
 In the case of Cerbforce some of the resources and actions are as follows:
 
@@ -18,7 +18,7 @@ In the case of Cerbforce some of the resources and actions are as follows:
 | Company | Create, Read, Update, Delete |
 | Contact | Create, Read, Update, Delete |
 
-With this as a start you can begin creating your first Cerbos policy - a [resource policy](https://docs.cerbos.dev/cerbos/latest/policies/resource_policies.html).
+With this as a start, you can begin creating your first Cerbos policy - a [resource policy](https://docs.cerbos.dev/cerbos/latest/policies/resource_policies.html).
 
 
 ## Resource policies
@@ -49,9 +49,9 @@ resourcePolicy:
         - admin         
 ```
 
-The structure of a resource poliicy requires a name to be set on the `resource` key and then a list of rules are defined. A rule defines a list of actions on the resource, the effect of the rule (`EFFECT_ALLOW` or `EFFECT_DENY`) and then feilds to state who this applies to - in this simple case a list of `roles` which is checked for in the roles of the user making the request.
+The structure of a resource policy requires a name to be set on the `resource` key and then a list of rules is defined. A rule defines a list of actions on the resource, the effect of the rule (`EFFECT_ALLOW` or `EFFECT_DENY`) and then fields to state who this applies to - in this simple case a list of `roles` which is checked for in the roles of the user making the request.
 
-In this case a request made for a principal with a the role of `user` is granted only `create` and `read` actions whilst an `admin` role can also perform `update`, `delete` actions.
+In this case, a request made for a principal with a role of `user` is granted only `create` and `read` actions whilst an `admin` role can also perform `update`, `delete` actions.
 
 The full documentation for resource policies can be found [here](https://docs.cerbos.dev/cerbos/latest/policies/resource_policies.html).
 
@@ -63,7 +63,7 @@ To simplify things further, admins to be able to do every action so a special `*
 {{#include ./cerbos/policies/user.yaml}}  
 ```
 
-The `contact` and `company` resources have a similiar structure at this stage and can be modeled as so:
+The `contact` and `company` resources have a similar structure at this stage and can be modeled as so:
 
 ```yaml
 {{#include ./cerbos/policies/contact.yaml}}
@@ -76,7 +76,7 @@ The `contact` and `company` resources have a similiar structure at this stage an
 
 ## Validating policies
 
-Now with the initial policies in place you can run Cerbos in compile mode which validates the content of the policy files to ensure they are correct.
+Now with the initial policies in place, you can run Cerbos in compile mode which validates the content of the policy files to ensure they are correct.
 
 If you are running Cerbos in a container then mount the folder containing your policies and run the `compile` command pointing to the folder of your policies.
 
@@ -94,4 +94,4 @@ If the policies are valid then the process exits with no errors. If there is an 
 
 ## Conclusion
 
-At this stage a simple Roles-based Access Control (RBAC) model has been deisgned and the policies have been validated - next up is making an authorization call to Cerbos.
+At this stage, a simple Roles-based Access Control (RBAC) model has been designed and the policies have been validated - next up is making an authorization call to Cerbos.

@@ -2,4 +2,4 @@
 
 With the policies now defined the authorization logic inside the app can be replaced with a call out to a running Cerbos instance.
 
-Cerbos has SDKs avaliable for Go, Node, Java with more coming soon. Documentation for these and other examples can be found [here](https://docs.cerbos.dev/cerbos/latest/api/index.html).
+Cerbos has SDKs available for Go, Node, Java with more coming soon. Documentation for these and other examples can be found [here](https://docs.cerbos.dev/cerbos/latest/api/index.html).
