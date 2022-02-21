@@ -24,7 +24,7 @@ With the configuration defined there are two options to choose from for running 
 
 ## Container
 
-If you have Docker you can simply use the published images. You need to mount the folder created in the preceeding step into the container for it to be able to read the policies:
+If you have Docker you can simply use the published images. You need to mount the folder created in the preceding step into the container for it to be able to read the policies:
 
 ```sh
 docker run --rm --name cerbos -t \
