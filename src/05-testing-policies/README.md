@@ -11,43 +11,7 @@ To define a test suite, create a `tests` folder alongside your policy folder. In
 As an example, the `contact` policy states that a `user` can create, read and update a contact, but only an `admin` can delete them - therefore you can create a test suite for this like the below:
 
 ```yaml
----
-name: ContactTestSuite
-description: Tests for verifying the contact resource policy
-resources: # the resources to test again
-  contact_test:
-    kind: "contact"
-    attr:
-principals: # the different users
-  admin:
-    id: adminId
-    roles:
-      - admin
-    attr:
-  user:
-    id: userId
-    roles:
-      - user
-    attr:
-tests: 
-  - name: Contact CRUD Actions
-    input: # the resource from above to test and the actions
-      requestId: "test"
-      resource: "contact_test"
-      actions: ["create", "read", "update", "delete"]
-    expected: # the expected output for each principal
-      - principal: user
-        actions:
-          create: EFFECT_ALLOW
-          read: EFFECT_ALLOW
-          update: EFFECT_ALLOW
-          delete: EFFECT_DENY
-      - principal: admin
-        actions:
-          create: EFFECT_ALLOW
-          read: EFFECT_ALLOW
-          update: EFFECT_ALLOW
-          delete: EFFECT_ALLOW
+{{#include ./cerbos/tests/contact_test.yaml}}
 ```
 
 With this defined, you can now extend the compile command to also run the tests for example:
@@ -65,11 +29,11 @@ docker run --rm --name cerbos -t \
 
 If everything is as expected the output of the tests should be green:
 
-```sh
+```
 Test results
 = ContactTestSuite (contact_test.yaml)
-== 'Contact Actions' by principal 'user' [OK]
-== 'Contact Actions' by principal 'admin' [OK]
+== 'Contact CRUD Actions' for resource 'contact_test' by principal 'user' [OK]
+== 'Contact CRUD Actions' for resource 'contact_test' by principal 'admin' [OK]
 ```
 
 Full testing documentation can be found [here](https://docs.cerbos.dev/cerbos/latest/policies/compile.html).

@@ -1,39 +1,65 @@
 ---
 name: CompanyTestSuite
 description: Tests for verifying the company resource policy
-resources:
-  company1:
-    kind: "company"
-    attr:
-      ownerId: user1
-  company2:
-    kind: "company"
-    attr:
-      ownerId: user2
+
 principals:
   admin:
     id: admin
     roles:
       - admin
-    attr:
+
   user1:
     id: user1
     roles:
       - user
-    attr:
+
   user2:
     id: user2
     roles:
       - user
+
+resources:
+  company1:
+    kind: company
+    id: company1
     attr:
+      ownerId: user1
+
+  company2:
+    kind: company
+    id: company2
+    attr:
+      ownerId: user2
+
 tests:
-  - name: Company 1 CRUD Actions
+  - name: Company CRUD Actions
     input:
-      requestId: "test"
-      actions: ["create", "read", "update", "delete"]
-      resource: "company1"
+      principals:
+        - admin
+        - user1
+        - user2
+
+      resources:
+        - company1
+        - company2
+
+      actions:
+        - create
+        - read
+        - update
+        - delete
+
     expected:
       - principal: admin
+        resource: company1
+        actions:
+          create: EFFECT_ALLOW
+          read: EFFECT_ALLOW
+          update: EFFECT_ALLOW
+          delete: EFFECT_ALLOW
+
+      - principal: admin
+        resource: company2
         actions:
           create: EFFECT_ALLOW
           read: EFFECT_ALLOW
@@ -41,26 +67,7 @@ tests:
           delete: EFFECT_ALLOW
 
       - principal: user1
-        actions:
-          create: EFFECT_ALLOW
-          read: EFFECT_ALLOW
-          update: EFFECT_ALLOW
-          delete: EFFECT_ALLOW
-
-      - principal: user2
-        actions:
-          create: EFFECT_ALLOW
-          read: EFFECT_ALLOW
-          update: EFFECT_DENY
-          delete: EFFECT_DENY
-
-  - name: Company 2 CRUD Actions
-    input:
-      requestId: "test"
-      actions: ["create", "read", "update", "delete"]
-      resource: "company2"
-    expected:
-      - principal: admin
+        resource: company1
         actions:
           create: EFFECT_ALLOW
           read: EFFECT_ALLOW
@@ -68,6 +75,7 @@ tests:
           delete: EFFECT_ALLOW
 
       - principal: user1
+        resource: company2
         actions:
           create: EFFECT_ALLOW
           read: EFFECT_ALLOW
@@ -75,6 +83,15 @@ tests:
           delete: EFFECT_DENY
 
       - principal: user2
+        resource: company1
+        actions:
+          create: EFFECT_ALLOW
+          read: EFFECT_ALLOW
+          update: EFFECT_DENY
+          delete: EFFECT_DENY
+
+      - principal: user2
+        resource: company2
         actions:
           create: EFFECT_ALLOW
           read: EFFECT_ALLOW
