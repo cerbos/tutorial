@@ -80,7 +80,7 @@ resourcePolicy:
         - user
       condition:
         match:
-          - expr: request.resource.id == request.principal.id
+          expr: request.resource.id == request.principal.id
 
 # ....other conditions
 ```
